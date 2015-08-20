@@ -1,0 +1,40 @@
+diff -ruN ROOTFS/node-red.org/node_modules/ws/lib/Validation.js ROOTFS/node-red/node_modules/ws/lib/Validation.js
+--- ROOTFS/node-red.org/node_modules/ws/lib/Validation.js	2015-08-20 22:27:10.598180681 +0200
++++ ROOTFS/node-red/node_modules/ws/lib/Validation.js	2015-08-20 22:28:18.006514941 +0200
+@@ -6,8 +6,8 @@
+  * MIT Licensed
+  */
+ 
+-try {
+-  module.exports = require('utf-8-validate');
+-} catch (e) {
++//try {
++//  module.exports = require('utf-8-validate');
++//} catch (e) {
+   module.exports = require('./Validation.fallback');
+-}
++//}
+diff -ruN ROOTFS/node-red.org/red.js ROOTFS/node-red/red.js
+--- ROOTFS/node-red.org/red.js	2015-08-20 22:27:08.930172410 +0200
++++ ROOTFS/node-red/red.js	2015-08-20 22:27:43.074341722 +0200
+@@ -76,7 +76,7 @@
+         // NODE_RED_HOME contains user data - use its settings.js
+         settingsFile = path.join(process.env.NODE_RED_HOME,"settings.js");
+     } else {
+-        var userSettingsFile = path.join(process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,".node-red","settings.js");
++        var userSettingsFile = path.join(process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE || "/",".node-red","settings.js");
+         if (fs.existsSync(userSettingsFile)) {
+             // $HOME/.node-red/settings.js exists
+             settingsFile = userSettingsFile;
+diff -ruN ROOTFS/node-red.org/settings.js ROOTFS/node-red/settings.js
+--- ROOTFS/node-red.org/settings.js	2015-08-20 22:27:08.886172192 +0200
++++ ROOTFS/node-red/settings.js	2015-08-20 22:27:53.206391964 +0200
+@@ -20,7 +20,7 @@
+ 
+ module.exports = {
+     // the tcp port that the Node-RED web server is listening on
+-    uiPort: 1880,
++    uiPort: 80,
+ 
+     // By default, the Node-RED UI accepts connections on all IPv4 interfaces.
+     // The following property can be used to listen on a specific interface. For

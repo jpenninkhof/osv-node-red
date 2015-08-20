@@ -1,0 +1,3 @@
+base: cloudius/osv-node
+cmdline: /libnode.so /node-red/red.js
+build: ./build.sh
